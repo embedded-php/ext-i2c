@@ -97,7 +97,7 @@ zend_class_entry* registerBusClass(void) {
   classEntry->create_object = busCreateObject;
 
   /* disable serialization/unserialization */
-  #if PHP_VERSION_ID >= 80102
+  #ifdef ZEND_ACC_NOT_SERIALIZABLE
     classEntry->ce_flags |= ZEND_ACC_NOT_SERIALIZABLE;
   #else
     classEntry->serialize = zend_class_serialize_deny;

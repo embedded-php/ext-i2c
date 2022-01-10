@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install libi2c-dev shtool -y
+        sudo apt-get install libi2c-dev -y
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
@@ -32,7 +32,7 @@ jobs:
     - name: Prepare for build
       run: phpize && ./configure
 
-    - name: Build phpi2c
+    - name: Build ext-i2c
       run: make
 
     - name: Run test suite
