@@ -95,10 +95,14 @@ zend_class_entry* registerBusClass(void) {
   classEntry->ce_flags |= ZEND_ACC_FINAL | ZEND_ACC_NO_DYNAMIC_PROPERTIES;
   /* intercept object creation to change object handlers */
   classEntry->create_object = busCreateObject;
-  /* disable serialization */
-  classEntry->serialize = zend_class_serialize_deny;
-  /* disable unserialization */
-  classEntry->unserialize = zend_class_unserialize_deny;
+
+  /* disable serialization/unserialization */
+  #if PHP_VERSION_ID >= 80102
+    classEntry->ce_flags |= ZEND_ACC_NOT_SERIALIZABLE;
+  #else
+    classEntry->serialize = zend_class_serialize_deny;
+    classEntry->unserialize = zend_class_unserialize_deny;
+  #endif
 
   /* initialize busObjectHandlers with standard object handlers */
   memcpy(&busObjectHandlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
@@ -173,7 +177,7 @@ PHP_METHOD(I2C_Bus, __construct) {
   busObject *self = getBusObject(Z_OBJ_P(ZEND_THIS));
 
   char device[20];
-  if (snprintf(device, sizeof(device), "/dev/i2c-%d", busId) >= 20) {
+  if (snprintf(device, sizeof(device), "/dev/i2c-%ld", busId) >= 20) {
     zend_throw_exception_ex(zceException, 0, "The bus and/or the device number is invalid");
 
     RETURN_THROWS();

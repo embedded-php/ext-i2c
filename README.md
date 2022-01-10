@@ -41,7 +41,7 @@ Class                                | Description
 
 ## Resources
 
--
+- https://github.com/amaork/libi2c
 
 ## License
 
