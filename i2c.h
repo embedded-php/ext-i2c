@@ -20,11 +20,11 @@
   extern zend_module_entry i2c_module_entry;
   #define phpext_i2c_ptr &i2c_module_entry
 
-  #define PHP_I2C_EXTNAME   "phpi2c"
+  #define PHP_I2C_EXTNAME   "i2c"
   #define PHP_I2C_VERSION   "0.0.1-dev"
   #define PHP_I2C_AUTHOR    "flavioheleno"
-  #define PHP_I2C_URL       "https://github.com/flavioheleno/phpi2c"
-  #define PHP_I2C_COPYRIGHT "Copyright (c) 2021"
+  #define PHP_I2C_URL       "https://github.com/embedded-php/ext-i2c"
+  #define PHP_I2C_COPYRIGHT "Copyright (c) 2021-2022"
 
   #if defined(ZTS) && defined(COMPILE_DL_I2C)
     ZEND_TSRMLS_CACHE_EXTERN()
