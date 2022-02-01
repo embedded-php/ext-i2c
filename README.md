@@ -1,4 +1,4 @@
-# phpi2c
+# I2C PHP Extension
 
 The I2C PHP Extension provides an object-oriented wrapper to the
 [i2c-dev](https://www.kernel.org/doc/Documentation/i2c/dev-interface) Linux Module that gives users the ability to write
@@ -11,6 +11,18 @@ code that interacts with external hardware using the [I2C](https://en.wikipedia.
 
 > **Note:** if you are using this extension on Raspbian or Raspberry Pi OS, the user executing the script **must**
 > belong to the **i2c** group or you may run into "Permission denied" errors.
+
+On **Raspbian** or **Raspberry Pi OS**:
+
+**PHP 8.0**:
+```bash
+sudo apt install php8.0-cli php8.0-dev php8.0-phpdbg libi2c-dev
+```
+
+**PHP 8.1**:
+```bash
+sudo apt install php8.1-cli php8.1-dev php8.1-phpdbg libi2c-dev
+```
 
 ## Building
 
